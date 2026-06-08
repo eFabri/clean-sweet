@@ -53,10 +53,10 @@ h2.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw
 .top-bar{background:var(--brown-dark);color:var(--gold-light);font-size:.82rem;font-weight:700;letter-spacing:.06em;text-align:center;padding:9px 20px;}
 
 /* ── HERO ── */
-#hero{background:var(--brown-dark);position:relative;overflow:hidden;}
-.hero-food-img{width:100%;display:block;max-height:520px;object-fit:cover;object-position:center 30%;opacity:.85;}
+#hero{background:var(--brown-dark);position:relative;overflow:hidden;min-height:580px;display:flex;align-items:flex-end;}
+.hero-food-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;opacity:.85;display:block;}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(28,14,5,.2) 0%,rgba(28,14,5,.68) 35%,rgba(28,14,5,.96) 100%);}
-.hero-content{position:absolute;bottom:0;left:0;right:0;padding:24px 20px 96px;text-align:center;}
+.hero-content{position:relative;z-index:2;width:100%;padding:100px 20px 96px;text-align:center;}
 .hero-eyebrow{font-size:.7rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px;display:block;}
 #hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3rem);line-height:1.15;color:#fff;margin-bottom:14px;}
 #hero h1 em{font-style:normal;color:var(--gold-light);}
@@ -137,7 +137,7 @@ h2.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw
 .family-content h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.5vw,2.2rem);color:#fff;line-height:1.2;margin-bottom:14px;}
 .family-content h2 em{font-style:normal;color:var(--gold-light);}
 .family-content p{font-size:.95rem;color:rgba(255,255,255,.82);line-height:1.65;margin-bottom:24px;}
-@media(max-width:600px){.family-img{min-height:220px;max-height:280px;}.family-content{position:relative;top:auto;transform:none;background:var(--brown-dark);padding:32px 20px;max-width:100%;}
+@media(max-width:600px){#family{display:flex;flex-direction:column;}.family-img{position:relative!important;width:100%;height:260px;object-fit:cover;display:block;}.family-content{position:relative!important;top:auto!important;transform:none!important;background:var(--brown-dark);padding:32px 20px;max-width:100%;}
 .family-overlay{display:none;}}
 
 /* ── CHEF ── */
@@ -166,7 +166,7 @@ h2.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw
 .bonus-price strong{color:var(--green);}
 
 /* ── OFFER ── */
-#offer{background:linear-gradient(160deg,#1A0A03,#3D1E0A);color:#fff;padding:64px 20px;text-align:center;}
+#offer{background:linear-gradient(160deg,#1A0A03,#3D1E0A);color:#fff;padding:64px 20px 80px;text-align:center;}
 #offer h2.section-title{color:var(--gold-light);}
 #offer .section-tag{color:var(--gold-light);border-color:var(--gold-light);}
 .timer-box{display:flex;justify-content:center;gap:14px;margin:24px 0;}
