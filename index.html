@@ -68,9 +68,61 @@ h2.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw
 .hero-divider{width:1px;height:32px;background:rgba(255,255,255,.2);align-self:center;}
 .hero-fine{font-size:.75rem;color:rgba(255,255,255,.5);margin-top:12px;display:flex;align-items:center;justify-content:center;gap:6px;}
 
-/* ── PROMISE STRIP ── */
-#promise{background:var(--gold);padding:18px 20px;text-align:center;}
-#promise p{font-size:1rem;font-weight:900;color:var(--brown-dark);letter-spacing:.02em;}
+/* ── PROMISE STRIP + CAROUSEL ── */
+#promise{background:var(--gold);padding:18px 20px 0;text-align:center;}
+#promise .promise-text{font-size:1rem;font-weight:900;color:var(--brown-dark);letter-spacing:.02em;padding-bottom:18px;}
+
+/* Infinite Carousel */
+.carousel-wrapper{
+  overflow:hidden;
+  width:100%;
+  background:var(--gold);
+  position:relative;
+  padding-bottom:0;
+}
+.carousel-track{
+  display:flex;
+  width:max-content;
+  animation:scroll-carousel 36s linear infinite;
+  will-change:transform;
+}
+.carousel-track:hover{animation-play-state:paused;}
+
+.carousel-slide{
+  flex-shrink:0;
+  width:220px;
+  height:220px;
+  overflow:hidden;
+}
+@media(max-width:600px){
+  .carousel-slide{width:150px;height:150px;}
+}
+.carousel-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .5s ease;
+}
+.carousel-slide:hover img{transform:scale(1.07);}
+
+/* Fade edges */
+.carousel-wrapper::before,
+.carousel-wrapper::after{
+  content:'';
+  position:absolute;
+  top:0;bottom:0;
+  width:100px;
+  z-index:2;
+  pointer-events:none;
+}
+.carousel-wrapper::before{left:0;background:linear-gradient(to right,var(--gold) 0%,transparent 100%);}
+.carousel-wrapper::after{right:0;background:linear-gradient(to left,var(--gold) 0%,transparent 100%);}
+
+@keyframes scroll-carousel{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
 
 /* ── FOOD GRID ── */
 #food-grid{background:var(--warm-white);padding:64px 20px;text-align:center;}
@@ -92,12 +144,57 @@ h2.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw
 #receive h2.section-title{color:#fff;}
 #receive .section-tag{color:var(--gold-light);border-color:var(--gold-light);}
 #receive .subtitle{font-size:.96rem;color:rgba(255,255,255,.75);max-width:520px;margin:0 auto 36px;line-height:1.6;}
-.receive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:0;text-align:left;}
-.receive-card{background:rgba(255,255,255,.06);border:1px solid rgba(212,160,23,.25);border-radius:10px;padding:22px 20px;position:relative;}
-.receive-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);border-radius:3px 3px 0 0;}
-.receive-card .icon{font-size:1.8rem;margin-bottom:10px;display:block;}
+.receive-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+  text-align:left;
+}
+.receive-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(212,160,23,.25);
+  border-radius:10px;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.receive-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+}
+.receive-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:var(--gold);
+  z-index:1;
+}
+.receive-card-img-wrap{
+  overflow:hidden;
+  height:175px;
+  flex-shrink:0;
+  position:relative;
+}
+.receive-card-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .5s ease;
+}
+.receive-card:hover .receive-card-img{transform:scale(1.06);}
+.receive-card-body{
+  padding:18px 18px 22px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+.receive-card .icon{font-size:1.4rem;margin-bottom:8px;display:block;}
 .receive-card h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold-light);margin-bottom:6px;}
-.receive-card p{font-size:.85rem;color:rgba(255,255,255,.72);line-height:1.5;}
+.receive-card p{font-size:.85rem;color:rgba(255,255,255,.72);line-height:1.55;}
 
 /* ── EMOTIONAL SECTION ── */
 #emotion{background:var(--cream);padding:0;overflow:hidden;}
@@ -253,9 +350,32 @@ footer a{color:rgba(255,255,255,.4);text-decoration:underline;}
   </div>
 </section>
 
-<!-- ══ PROMISE STRIP ══ -->
+<!-- ══ PROMISE STRIP + INFINITE CAROUSEL ══ -->
 <div id="promise">
-  <p>🍫 Brownies &nbsp;·&nbsp; 🍰 Cheesecake &nbsp;·&nbsp; 🎂 Pastel de cumpleaños &nbsp;·&nbsp; 🥐 Croissants &nbsp;·&nbsp; 🍕 Pizza &nbsp;·&nbsp; 🍞 Pan &nbsp;·&nbsp; 🌮 Tortillas &nbsp;·&nbsp; 🍪 Cookies — <strong>Todo. Sin culpa.</strong></p>
+  <p class="promise-text">🍫 Brownies &nbsp;·&nbsp; 🍰 Cheesecake &nbsp;·&nbsp; 🎂 Pastel de cumpleaños &nbsp;·&nbsp; 🥐 Croissants &nbsp;·&nbsp; 🍕 Pizza &nbsp;·&nbsp; 🍞 Pan &nbsp;·&nbsp; 🌮 Tortillas &nbsp;·&nbsp; 🍪 Cookies — <strong>Todo. Sin culpa.</strong></p>
+
+  <div class="carousel-wrapper">
+    <div class="carousel-track">
+      <!-- Set original -->
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943699/ChatGPT_Image_8_de_jun._de_2026_15_33_17_1_qk3swz.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943700/ChatGPT_Image_8_de_jun._de_2026_15_33_17_2_bjdndm.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943700/ChatGPT_Image_8_de_jun._de_2026_15_33_17_3_ingpjh.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943701/ChatGPT_Image_8_de_jun._de_2026_15_33_18_4_ednkvt.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943702/ChatGPT_Image_8_de_jun._de_2026_15_33_18_5_hv6p2z.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943703/ChatGPT_Image_8_de_jun._de_2026_15_33_19_6_xuel7l.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943704/ChatGPT_Image_8_de_jun._de_2026_15_33_19_7_qgoorj.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943705/ChatGPT_Image_8_de_jun._de_2026_15_33_20_8_b8lvns.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <!-- Duplicate set for seamless infinite loop -->
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943699/ChatGPT_Image_8_de_jun._de_2026_15_33_17_1_qk3swz.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943700/ChatGPT_Image_8_de_jun._de_2026_15_33_17_2_bjdndm.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943700/ChatGPT_Image_8_de_jun._de_2026_15_33_17_3_ingpjh.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943701/ChatGPT_Image_8_de_jun._de_2026_15_33_18_4_ednkvt.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943702/ChatGPT_Image_8_de_jun._de_2026_15_33_18_5_hv6p2z.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943703/ChatGPT_Image_8_de_jun._de_2026_15_33_19_6_xuel7l.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943704/ChatGPT_Image_8_de_jun._de_2026_15_33_19_7_qgoorj.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943705/ChatGPT_Image_8_de_jun._de_2026_15_33_20_8_b8lvns.webp" alt="Postre sin azúcar" loading="lazy"/></div>
+    </div>
+  </div>
 </div>
 
 <!-- ══ FOOD GRID ══ -->
@@ -292,12 +412,85 @@ footer a{color:rgba(255,255,255,.4);text-decoration:underline;}
     <h2 class="section-title">Más de 400 recetas organizadas<br/>por categorías</h2>
     <p class="subtitle">Sin harina refinada, sin azúcar añadida, sin lactosa — con el sabor que recuerdas. Ingredientes de supermercado normal. Lista en menos de 20 minutos.</p>
     <div class="receive-grid">
-      <div class="receive-card"><span class="icon">🍫</span><h3>Postres y Dulces</h3><p>Brownies, cheesecake NY, cookies, pastel de cumpleaños, pudín de banana, fudge de caramelo.</p></div>
-      <div class="receive-card"><span class="icon">🍞</span><h3>Panadería Real</h3><p>Pan de molde, panes artesanales, rolls de canela, croissants, baguette, burger buns.</p></div>
-      <div class="receive-card"><span class="icon">🍕</span><h3>Pizzas y Empanadas</h3><p>Pizza con borde real, masa elástica, empanadas que se mantienen unidas — sin harina refinada.</p></div>
-      <div class="receive-card"><span class="icon">🌮</span><h3>Arepas y Tortillas</h3><p>Arepas blandas, tortillas equilibradas, masas que nunca se rompen.</p></div>
-      <div class="receive-card"><span class="icon">📊</span><h3>Calculadora de Porciones</h3><p>Índice glucémico por receta. Sabes exactamente cuánto puedes comer.</p></div>
-      <div class="receive-card"><span class="icon">🛒</span><h3>Lista de Compras</h3><p>Ingredientes de supermercado. Sustituciones claras para cada país de Latinoamérica.</p></div>
+
+      <div class="receive-card">
+        <div class="receive-card-img-wrap">
+          <img class="receive-card-img"
+            src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943934/ChatGPT_Image_8_de_jun._de_2026_15_37_22_1_pz8tga.webp"
+            alt="Postres y Dulces" loading="lazy"/>
+        </div>
+        <div class="receive-card-body">
+          <span class="icon">🍫</span>
+          <h3>Postres y Dulces</h3>
+          <p>Brownies, cheesecake NY, cookies, pastel de cumpleaños, pudín de banana, fudge de caramelo.</p>
+        </div>
+      </div>
+
+      <div class="receive-card">
+        <div class="receive-card-img-wrap">
+          <img class="receive-card-img"
+            src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943935/ChatGPT_Image_8_de_jun._de_2026_15_37_23_2_nl5evb.webp"
+            alt="Panadería Real" loading="lazy"/>
+        </div>
+        <div class="receive-card-body">
+          <span class="icon">🍞</span>
+          <h3>Panadería Real</h3>
+          <p>Pan de molde, panes artesanales, rolls de canela, croissants, baguette, burger buns.</p>
+        </div>
+      </div>
+
+      <div class="receive-card">
+        <div class="receive-card-img-wrap">
+          <img class="receive-card-img"
+            src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943937/ChatGPT_Image_8_de_jun._de_2026_15_37_23_3_vunlio.webp"
+            alt="Pizzas y Empanadas" loading="lazy"/>
+        </div>
+        <div class="receive-card-body">
+          <span class="icon">🍕</span>
+          <h3>Pizzas y Empanadas</h3>
+          <p>Pizza con borde real, masa elástica, empanadas que se mantienen unidas — sin harina refinada.</p>
+        </div>
+      </div>
+
+      <div class="receive-card">
+        <div class="receive-card-img-wrap">
+          <img class="receive-card-img"
+            src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943938/ChatGPT_Image_8_de_jun._de_2026_15_37_23_4_wi7z3v.webp"
+            alt="Arepas y Tortillas" loading="lazy"/>
+        </div>
+        <div class="receive-card-body">
+          <span class="icon">🌮</span>
+          <h3>Arepas y Tortillas</h3>
+          <p>Arepas blandas, tortillas equilibradas, masas que nunca se rompen.</p>
+        </div>
+      </div>
+
+      <div class="receive-card">
+        <div class="receive-card-img-wrap">
+          <img class="receive-card-img"
+            src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943939/ChatGPT_Image_8_de_jun._de_2026_15_37_23_5_vtwmtb.webp"
+            alt="Calculadora de Porciones" loading="lazy"/>
+        </div>
+        <div class="receive-card-body">
+          <span class="icon">📊</span>
+          <h3>Calculadora de Porciones</h3>
+          <p>Índice glucémico por receta. Sabes exactamente cuánto puedes comer.</p>
+        </div>
+      </div>
+
+      <div class="receive-card">
+        <div class="receive-card-img-wrap">
+          <img class="receive-card-img"
+            src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780943941/ChatGPT_Image_8_de_jun._de_2026_15_37_23_6_upzejn.webp"
+            alt="Lista de Compras" loading="lazy"/>
+        </div>
+        <div class="receive-card-body">
+          <span class="icon">🛒</span>
+          <h3>Lista de Compras</h3>
+          <p>Ingredientes de supermercado. Sustituciones claras para cada país de Latinoamérica.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -376,7 +569,7 @@ footer a{color:rgba(255,255,255,.4);text-decoration:underline;}
   <div class="container">
     <span class="section-tag">Bonos de lanzamiento</span>
     <h2 class="section-title">3 regalos incluidos hoy</h2>
-    <p class="subtitle">Junto con el acceso completo al app, recibes estos tres bonos solo durante el período de lanzamiento.</p>
+    <p class="subtitle">Junto con el acceso completo a las recetas, recibes estos tres bonos solo durante el período de lanzamiento.</p>
     <div class="bonuses-grid">
       <div class="bonus-card">
         <div class="bonus-badge">Bono #1</div>
@@ -421,14 +614,14 @@ footer a{color:rgba(255,255,255,.4);text-decoration:underline;}
     </div>
     <div class="offer-grid">
       <div class="offer-mockup">
-        <img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780923953/ChatGPT_Image_8_de_jun._de_2026_09_18_04_1_kjj1bf.webp" alt="App Clean Sweet"/>
+        <img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780923953/ChatGPT_Image_8_de_jun._de_2026_09_18_04_1_kjj1bf.webp" alt="Clean Sweet Recetas"/>
       </div>
       <div class="price-block">
         <p class="price-anchor">Precio regular: $37 USD</p>
         <div class="price-main"><span>$</span>7</div>
         <p class="price-once">Pago único hoy — precio de lanzamiento</p>
         <ul class="offer-checklist">
-          <li>App Clean Sweet con +400 recetas para diabéticos</li>
+          <li>+400 recetas sin azúcar para diabéticos</li>
           <li>Calculadora de porciones integrada</li>
           <li>Lista de compras automática</li>
           <li>Actualizaciones constantes incluidas</li>
@@ -525,15 +718,15 @@ footer a{color:rgba(255,255,255,.4);text-decoration:underline;}
       </div>
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">¿Funciona para diabetes tipo 1 y tipo 2? ¿Y para resistencia a la insulina?<span class="faq-icon">+</span></button>
-        <div class="faq-answer">Las recetas fueron desarrolladas para no disparar la glucosa en personas con resistencia a la insulina y diabetes tipo 2. Si tienes diabetes tipo 1 o un caso más complejo, consulta con tu médico antes de hacer cambios en tu dieta. El app incluye el índice glucémico por receta para que tu equipo médico pueda orientarte mejor.</div>
+        <div class="faq-answer">Las recetas fueron desarrolladas para no disparar la glucosa en personas con resistencia a la insulina y diabetes tipo 2. Si tienes diabetes tipo 1 o un caso más complejo, consulta con tu médico antes de hacer cambios en tu dieta. El acceso incluye el índice glucémico por receta para que tu equipo médico pueda orientarte mejor.</div>
       </div>
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">¿Los ingredientes son difíciles de conseguir?<span class="faq-icon">+</span></button>
         <div class="faq-answer">No. Todos los ingredientes se consiguen en supermercado normal — sin tiendas especializadas, sin productos importados caros. Las sustituciones están explicadas claramente para diferentes países de Latinoamérica.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">¿Cómo accedo al app después de comprar?<span class="faq-icon">+</span></button>
-        <div class="faq-answer">Inmediatamente después del pago recibes un correo con el enlace de acceso. El app funciona en celular, tablet y computadora. No necesitas descargar nada — accedes directo desde el navegador con tu cuenta.</div>
+        <button class="faq-question" onclick="toggleFaq(this)">¿Cómo accedo a las recetas después de comprar?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">Inmediatamente después del pago recibes un correo con el enlace de acceso. Las recetas funcionan en celular, tablet y computadora. No necesitas descargar nada — accedes directo desde el navegador con tu cuenta.</div>
       </div>
     </div>
   </div>
@@ -560,8 +753,8 @@ footer a{color:rgba(255,255,255,.4);text-decoration:underline;}
   if(stored)total=parseInt(stored,10);
   var tm=document.getElementById('tm');
   var ts=document.getElementById('ts');
-  var t=setInterval(function(){
-    if(total<=0){total=15*60;sessionStorage.removeItem("cs_timer");}
+  setInterval(function(){
+    if(total<=0){total=15*60;sessionStorage.removeItem('cs_timer');}
     tm.textContent=String(Math.floor(total/60)).padStart(2,'0');
     ts.textContent=String(total%60).padStart(2,'0');
     sessionStorage.setItem('cs_timer',total);
@@ -584,6 +777,15 @@ document.querySelectorAll('a[href="#offer"]').forEach(function(a){
     document.getElementById('offer').scrollIntoView({behavior:'smooth'});
   });
 });
+
+// CAROUSEL — pause on touch (mobile)
+(function(){
+  var track=document.querySelector('.carousel-track');
+  if(!track)return;
+  var wrap=track.parentElement;
+  wrap.addEventListener('touchstart',function(){track.style.animationPlayState='paused';},{passive:true});
+  wrap.addEventListener('touchend',function(){track.style.animationPlayState='running';},{passive:true});
+})();
 </script>
 </body>
 </html>
