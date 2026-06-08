@@ -130,15 +130,15 @@ h2.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw
 .why-card p{font-size:.86rem;color:var(--text-mid);line-height:1.55;}
 
 /* ── FAMILY TABLE ── */
-#family{background:var(--warm-white);padding:0;overflow:hidden;position:relative;}
-.family-img{width:100%;display:block;max-height:460px;object-fit:cover;object-position:center top;}
-.family-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(28,14,5,.82) 0%,rgba(28,14,5,.4) 50%,transparent 100%);}
-.family-content{position:absolute;top:50%;left:0;transform:translateY(-50%);padding:0 40px;max-width:500px;}
-.family-content h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.5vw,2.2rem);color:#fff;line-height:1.2;margin-bottom:14px;}
+#family{background:var(--brown-dark);overflow:hidden;}
+.family-img-wrap{position:relative;height:320px;overflow:hidden;}
+.family-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+.family-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(28,14,5,.1) 0%,rgba(28,14,5,.7) 100%);}
+.family-content{padding:28px 24px 36px;text-align:center;}
+.family-content h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3.5vw,2.1rem);color:#fff;line-height:1.2;margin-bottom:12px;}
 .family-content h2 em{font-style:normal;color:var(--gold-light);}
-.family-content p{font-size:.95rem;color:rgba(255,255,255,.82);line-height:1.65;margin-bottom:24px;}
-@media(max-width:600px){#family{display:flex;flex-direction:column;}.family-img{position:relative!important;width:100%;height:260px;object-fit:cover;display:block;}.family-content{position:relative!important;top:auto!important;transform:none!important;background:var(--brown-dark);padding:32px 20px;max-width:100%;}
-.family-overlay{display:none;}}
+.family-content p{font-size:.92rem;color:rgba(255,255,255,.8);line-height:1.65;margin-bottom:20px;max-width:480px;margin-left:auto;margin-right:auto;}
+@media(min-width:700px){#family{position:relative;min-height:400px;display:flex;align-items:stretch;}.family-img-wrap{position:absolute;inset:0;height:auto;}.family-overlay{background:linear-gradient(to right,rgba(28,14,5,.88) 0%,rgba(28,14,5,.5) 55%,transparent 100%);}.family-content{position:relative;z-index:2;padding:60px 48px;text-align:left;max-width:520px;display:flex;flex-direction:column;justify-content:center;}.family-content p{margin-left:0;margin-right:0;}}
 
 /* ── CHEF ── */
 #chef{background:var(--cream);padding:64px 20px;}
@@ -346,11 +346,13 @@ footer a{color:rgba(255,255,255,.4);text-decoration:underline;}
 
 <!-- ══ FAMILY TABLE ══ -->
 <section id="family">
-  <img class="family-img" src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780939727/ChatGPT_Image_8_de_jun._de_2026_14_26_00_7_forpzx.webp" alt="Familia compartiendo postres sin azúcar en la mesa"/>
-  <div class="family-overlay"></div>
+  <div class="family-img-wrap">
+    <img class="family-img" src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780939727/ChatGPT_Image_8_de_jun._de_2026_14_26_00_7_forpzx.webp" alt="Familia compartiendo postres sin azúcar en la mesa"/>
+    <div class="family-overlay"></div>
+  </div>
   <div class="family-content">
     <h2>"Esto no es comida de enfermo.<br/><em>Es comida para toda la mesa.</em>"</h2>
-    <p>Para cumpleaños, Navidad, domingos en familia, reuniones con amigos. Tu diagnóstico no define lo que puedes comer. Define cómo lo preparas.</p>
+    <p>Para cumpleaños, Navidad, domingos en familia. Tu diagnóstico no define lo que puedes comer. Define cómo lo preparas.</p>
     <a href="#offer" class="btn-cta">QUIERO ACCESO AHORA →</a>
   </div>
 </section>
