@@ -267,6 +267,40 @@ footer a{color:rgba(255,255,255,.35);text-decoration:underline;}
 .sticky-bar strong{color:var(--gold-light);}
 @media(max-width:768px){.sticky-bar{display:none;}}
 
+/* ── MID-CTA — botões intermediários mobile ── */
+.mid-cta{
+  text-align:center;
+  padding:32px 24px;
+  background:var(--brown-dark);
+  border-top:1px solid rgba(212,160,23,.15);
+  border-bottom:1px solid rgba(212,160,23,.15);
+}
+.mid-cta .mid-cta-label{
+  font-size:.7rem;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold);
+  display:block;
+  margin-bottom:10px;
+}
+.mid-cta p{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(.95rem,2.2vw,1.15rem);
+  color:rgba(255,255,255,.88);
+  line-height:1.5;
+  margin-bottom:20px;
+  font-style:italic;
+}
+.mid-cta .btn-cta{font-size:1rem;padding:16px 32px;}
+.mid-cta .micro{
+  display:block;
+  margin-top:12px;
+  font-size:.72rem;
+  color:rgba(255,255,255,.35);
+  letter-spacing:.04em;
+}
+
 /* ── ÍCONES ANIMADOS — SVG nos why-cards ── */
 .why-icon-svg{
   width:44px;height:44px;
@@ -403,6 +437,14 @@ footer a{color:rgba(255,255,255,.35);text-decoration:underline;}
   <div class="promise-divider"></div>
 </div>
 
+<!-- MID-CTA 1 — após carrossel, pico de desejo visual -->
+<div class="mid-cta reveal">
+  <span class="mid-cta-label">Todo esto por $7</span>
+  <p>Más de 400 recetas que no afectan tu glucosa — con el mismo sabor de siempre.</p>
+  <a href="#offer" class="btn-cta">QUIERO ACCESO AHORA →</a>
+  <span class="micro">🔒 Garantía 7 días · Pago único · Acceso inmediato</span>
+</div>
+
 <!-- wave -->
 <div class="wave-divider" style="background:var(--brown-dark);"><svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="height:48px;" fill="var(--warm-white)"><path d="M0,48 C360,0 1080,0 1440,48 L1440,48 L0,48 Z"/></svg></div>
 
@@ -464,6 +506,14 @@ footer a{color:rgba(255,255,255,.35);text-decoration:underline;}
     </div>
   </div>
 </section>
+
+<!-- MID-CTA 2 — após emoção, pico máximo da narrativa -->
+<div class="mid-cta reveal">
+  <span class="mid-cta-label">Que tu familia vuelva a la mesa contigo</span>
+  <p>"Nadie debería perderse el pastel de su propio cumpleaños."</p>
+  <a href="#offer" class="btn-cta">QUIERO ACCESO POR $7 →</a>
+  <span class="micro">🔒 Garantía incondicional · Sin preguntas · Sin burocracia</span>
+</div>
 
 <!-- BEFORE AFTER -->
 <section id="before-after">
@@ -586,6 +636,14 @@ footer a{color:rgba(255,255,255,.35);text-decoration:underline;}
     </div>
   </div>
 </section>
+
+<!-- MID-CTA 3 — após bônus, valor máximo percebido -->
+<div class="mid-cta reveal">
+  <span class="mid-cta-label">Valor total: $74 USD — Tuyo hoy por</span>
+  <p>+400 recetas · Calculadora de porciones · Lista de compras · 3 bonos incluidos</p>
+  <a href="#offer" class="btn-cta">QUIERO TODO POR $7 →</a>
+  <span class="micro">🔒 Pago único · Sin suscripción · Acceso inmediato</span>
+</div>
 
 <!-- OFFER -->
 <section id="offer">
