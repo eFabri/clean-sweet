@@ -441,7 +441,7 @@ footer a{color:rgba(255,255,255,.35);text-decoration:underline;}
 <div class="mid-cta reveal">
   <span class="mid-cta-label">Todo esto por $7</span>
   <p>Más de 400 recetas que no afectan tu glucosa — con el mismo sabor de siempre.</p>
-  <a href="#offer" class="btn-cta">QUIERO ACCESO AHORA →</a>
+  <a href="#cta" class="btn-cta">QUIERO ACCESO AHORA →</a>
   <span class="micro">🔒 Garantía 7 días · Pago único · Acceso inmediato</span>
 </div>
 
@@ -511,7 +511,7 @@ footer a{color:rgba(255,255,255,.35);text-decoration:underline;}
 <div class="mid-cta reveal">
   <span class="mid-cta-label">Que tu familia vuelva a la mesa contigo</span>
   <p>"Nadie debería perderse el pastel de su propio cumpleaños."</p>
-  <a href="#offer" class="btn-cta">QUIERO ACCESO POR $7 →</a>
+  <a href="#cta" class="btn-cta">QUIERO ACCESO POR $7 →</a>
   <span class="micro">🔒 Garantía incondicional · Sin preguntas · Sin burocracia</span>
 </div>
 
@@ -605,7 +605,7 @@ footer a{color:rgba(255,255,255,.35);text-decoration:underline;}
   <div class="family-content reveal-left">
     <h2>"Esto no es comida de enfermo.<br/><em>Es comida para toda la mesa.</em>"</h2>
     <p>Para cumpleaños, Navidad, domingos en familia. Tu diagnóstico no define lo que puedes comer. Define cómo lo preparas.</p>
-    <a href="#offer" class="btn-cta">QUIERO ACCESO AHORA →</a>
+    <a href="#cta" class="btn-cta">QUIERO ACCESO AHORA →</a>
   </div>
 </section>
 
@@ -641,7 +641,7 @@ footer a{color:rgba(255,255,255,.35);text-decoration:underline;}
 <div class="mid-cta reveal">
   <span class="mid-cta-label">Valor total: $74 USD — Tuyo hoy por</span>
   <p>+400 recetas · Calculadora de porciones · Lista de compras · 3 bonos incluidos</p>
-  <a href="#offer" class="btn-cta">QUIERO TODO POR $7 →</a>
+  <a href="#cta" class="btn-cta">QUIERO TODO POR $7 →</a>
   <span class="micro">🔒 Pago único · Sin suscripción · Acceso inmediato</span>
 </div>
 
@@ -659,7 +659,7 @@ footer a{color:rgba(255,255,255,.35);text-decoration:underline;}
       <div class="offer-mockup reveal-left">
         <img src="https://res.cloudinary.com/def9lnal7/image/upload/f_auto,q_auto/v1780969293/ChatGPT_Image_8_de_jun._de_2026_22_40_57_ow16wx.webp" alt="Clean Sweet — 400 recetas + bonos"/>
       </div>
-      <div class="price-block reveal-right">
+      <div class="price-block reveal-right" id="cta">
         <p class="price-anchor">Precio regular: $37 USD</p>
         <div class="price-main"><sup>$</sup>7</div>
         <p class="price-once">Pago único hoy — precio de lanzamiento</p>
@@ -757,6 +757,12 @@ document.querySelectorAll('a[href="#offer"]').forEach(function(a){
   a.addEventListener('click',function(e){
     e.preventDefault();
     document.getElementById('offer').scrollIntoView({behavior:'smooth'});
+  });
+});
+document.querySelectorAll('a[href="#cta"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    document.getElementById('cta').scrollIntoView({behavior:'smooth',block:'center'});
   });
 });
 
